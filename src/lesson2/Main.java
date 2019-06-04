@@ -9,7 +9,7 @@ public class Main {
 
         Random random =new Random();
 
-        int n = 100;
+        int n = 10000;
         MyArrayList<Integer> mal = new MyArrayList<>(n);
 
 
@@ -28,7 +28,7 @@ public class Main {
         System.out.println();
 
 
-        MyArrayList<Integer> mal1 = new MyArrayList<>();
+        MyArrayList<Integer> mal1 = new MyArrayList<>(1000000);
         mal1.add(100);
         mal1.add(30);
         mal1.add(5);
