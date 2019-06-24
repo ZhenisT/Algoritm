@@ -15,9 +15,9 @@ public class Main {
         chhs.put(9,"Two");
         chhs.put(17,"Two");
 //
-//        for (int i = 0; i < 90; i++) {
-//            chhs.put(i," Цифра "+i+"  ");
-//        }
+        for (int i = 0; i < 90; i++) {
+            chhs.put(i," Цифра "+i+"  ");
+        }
 //
 ////        for (int i = 0; i < 99; i++) {
 ////            chhs.put((int)(Math.random()*1000),"Цифра");
@@ -26,7 +26,7 @@ public class Main {
 //        chhs.delete(1);
 //        System.out.println(chhs.get(48));
 //        chhs.put(1," new    ");
-        System.out.println(chhs.get(1));
+        System.out.println(chhs.size());
 
 //        LinearProbingHashST<Integer, String> lpst = new LinearProbingHashST<>(97,-1);
 //        for (int i = 0; i < 90; i++) {

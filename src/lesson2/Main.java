@@ -9,12 +9,12 @@ public class Main {
 
         Random random =new Random();
 
-        int n = 10000;
+        int n = 1000;
         MyArrayList<Integer> mal = new MyArrayList<>(n);
 
 
         for (int i = 0; i < n; i++) {
-            mal.add(random.nextInt(200));
+            mal.add(random.nextInt(10));
         }
 
         System.out.println(mal);

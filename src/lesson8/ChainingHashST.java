@@ -5,9 +5,7 @@ import java.util.LinkedList;
 public class ChainingHashST<Key, Value> {
     private int capacity;
     private int size = 0;
-
     private Key DELETED;
-
     private LinkedList<Node>[] st;
 
     public ChainingHashST(int capacity, Key DELETED) {
@@ -19,7 +17,7 @@ public class ChainingHashST<Key, Value> {
         }
     }
 
-    private class Node{
+    private class Node {
         private Key key;
         private Value value;
 
@@ -29,36 +27,29 @@ public class ChainingHashST<Key, Value> {
         }
     }
 
-
-
-    public void put(Key key, Value value){
-        if (key == null){
-            throw new IllegalArgumentException("null key");
-        }
+    public void put(Key key, Value value) {
+        keyNullException(key);
         int i = hash(key);
-
-        for (Node node:st[i]) {
-            if (key.equals(node.key)){
+        for (Node node : st[i]) {
+            if (key.equals(node.key)) {
                 node.value = value;
                 return;
             }
-            if (node.key.equals(DELETED)){
+            if (node.key.equals(DELETED)) {
                 node.key = key;
                 node.value = value;
                 return;
             }
         }
-        st[i].addLast(new Node(key,value));
+        st[i].addLast(new Node(key, value));
         size++;
     }
 
-    public void delete(Key key){
-        if (key == null) {
-            throw new IllegalArgumentException("null key");
-        }
+    public void delete(Key key) {
+        keyNullException(key);
         int i = hash(key);
-        for (Node node:st[i]) {
-            if (key.equals(node.key)){
+        for (Node node : st[i]) {
+            if (key.equals(node.key)) {
                 node.key = DELETED;
 //                node.value = null;
                 size--;
@@ -68,45 +59,48 @@ public class ChainingHashST<Key, Value> {
 
     }
 
-    public int size() {
-        return size;
-    }
-
-    public boolean isEmpty(){
-        return size == 0;
-    }
-
-    public boolean contains(Key key){
-        return get(key) != null;//
-    }
-
-    public int hash(Key key){
-//        return (key.hashCode() & 0x7fffffff) % capacity;
-        return (capacity-1)-(key.hashCode() & 0x7fffffff) % (capacity-1) ;
-    }
-
-    public Value get(Key key){
-        if (key == null){
-            throw new IllegalArgumentException("null key");
-        }
+    public Value get(Key key) {
+        keyNullException(key);
         int i = hash(key);
-        for (Node node:st[i]) {
-            if(node.key.equals(key)){
+        for (Node node : st[i]) {
+            if (node.key.equals(key)) {
                 return node.value;
             }
         }
         return null;
     }
-   
+
+    private int hash(Key key) {
+//        return (key.hashCode() & 0x7fffffff) % capacity;
+        return (capacity - 1) - (key.hashCode() & 0x7fffffff) % (capacity - 1);
+    }
+
+    public int size() {
+        return size;
+    }
+
+    private boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean contains(Key key) {
+        return get(key) != null;//
+    }
+
+    private void keyNullException(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("null key");
+        }
+    }
 
     @Override
     public String toString() {
-        String s="";
-        for (int i = 0; i <capacity ; i++) {
-            for (Node node:st[i]) {
-                s+=node.key +" "+node.value;
+        String s = "";
+        for (int i = 0; i < capacity; i++) {
+            for (Node node : st[i]) {
+                s += node.key + " " + node.value;
             }
-            s+="\n";
+            s += "\n";
         }
 
         return "ChainingHashST{\n" +
