@@ -1,6 +1,7 @@
 package lesson4;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,53 +10,31 @@ public class Main {
         mll.insertFirst("Katia");
         mll.insertFirst("Petia");
         mll.insertFirst("Sania");
-        System.out.println(mll);
 
-        mll.insert(2, "Maria");
-        System.out.println(mll);
-
-        System.out.println(mll.delete("Maria"));
-        System.out.println(mll);
-
-        System.out.println();
-        for (Node node: mll) {
-            System.out.println(node.getValue()+", ");
-        }
+//        for (String node: mll) {
+//            System.out.println(node +", ");
+//        }
 
         System.out.println();
 
-        Iterator<Node<String>> iterator = mll.iterator();
-        while(iterator.hasNext()){
-            System.out.print(iterator.next().getValue()+", ");
-            iterator.remove();
+//        Iterator<String> iterator = mll.iterator();
+//        while(iterator.hasNext()){
+//            System.out.print(iterator.next()+", ");
+//
+//        }
+
+        ListIterator<String> listIterator = mll.listIter();
+        while(listIterator.hasNext()){
+            System.out.print(listIterator.next()+", ");
+
         }
 
-        System.out.println();
-        System.out.println(mll);
+        System.out.println(listIterator.previous());
+
+//        System.out.println();
+//        System.out.println(mll);
 
 
-
-
-
-
-        MyStack<Integer> myStack = new MyStack<>();
-        for (int i = 0; i <10 ; i++) {
-            myStack.push(i);
-        }
-        for (int i = 0; i < 10; i++) {
-            System.out.print(myStack.pop()+" ");
-        }
-
-
-        System.out.println("\nmyQueue");
-
-        MyQueue<Integer> myQueue = new MyQueue<>();
-        for (int i = 0; i <10 ; i++) {
-            myQueue.enqueue(i);
-        }
-        for (int i = 0; i < 10; i++) {
-            System.out.print(myQueue.dequeue()+" ");
-        }
 
 
 

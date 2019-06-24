@@ -1,8 +1,9 @@
 package lesson4;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
-public class MyLinkedList<Item> implements Iterable<Node<Item>> {
+public class MyLinkedList<Item> implements Iterable<Item>{
     private Node first;
     private Node last;
     private int size = 0;
@@ -11,13 +12,18 @@ public class MyLinkedList<Item> implements Iterable<Node<Item>> {
         first = null;
         last = null;
     }
+
     @Override
-    public Iterator<Node<Item>> iterator() {
+    public Iterator<Item> iterator() {
         return new Iter();
     }
 
-    private class Iter implements Iterator<Node<Item>>{
-        Node current = new Node(null,first);
+    public ListIterator<Item> listIter() {
+        return new ListIter();
+    }
+
+    private class Iter implements Iterator<Item>{
+        Node<Item> current = new Node<>(null,first);
 
         @Override
         public boolean hasNext() {
@@ -25,16 +31,63 @@ public class MyLinkedList<Item> implements Iterable<Node<Item>> {
         }
 
         @Override
-        public Node<Item> next() {
+        public Item next() {
             current = current.getNext();
-            return current;
+            return current.getValue();
+        }
+    }
+
+    private class ListIter implements ListIterator<Item>{
+        Node<Item> current = new Node<>(null,first);
+
+        @Override
+        public boolean hasNext() {
+            return current.getNext() != null;
+        }
+
+        @Override
+        public Item next() {
+            current = current.getNext();
+            return current.getValue();
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return current.getPrevious() != null;
+        }
+
+        @Override
+        public Item previous() {
+            current = current.getPrevious();
+            return current.getValue();
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
         }
 
         @Override
         public void remove() {
 
         }
+
+        @Override
+        public void set(Item item) {
+
+        }
+
+        @Override
+        public void add(Item item) {
+
+        }
     }
+
 
     public void insertFirst(Item item) {
         Node newNode = new Node(item);
@@ -191,4 +244,6 @@ public class MyLinkedList<Item> implements Iterable<Node<Item>> {
         }
         return s;
     }
+
+
 }
